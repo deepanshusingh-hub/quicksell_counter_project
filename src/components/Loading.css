@@ -1,0 +1,24 @@
+.upperComponent{
+    display: flex;
+    /* flex-direction: row; */
+}
+.loader {
+    border: 8px solid #FBE8E8; /* Light grey */
+    border-top: 8px solid #B24242; /* Blue */
+    border-radius: 50%;
+    width: 6px;
+    height: 6px;
+    animation: spin 2s linear infinite;
+    margin-left: 35px;
+    margin-top: 5px;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .loading-text{
+      margin-top: 5px;
+      margin-left: 6px;
+  }

@@ -1,0 +1,89 @@
+.ArtBoardView{
+    position: absolute;
+    top: 37px;
+    left: 38.5px;
+    display: flex;
+    width: 257px;
+    height: 130px;
+    background-color: white;
+    box-shadow: rgb(0 0 0 / 10%) 0px 0px 2px 0px, rgb(0 0 0 / 10%) 0px 2px 4px 0px;
+    margin: auto;
+    margin-top: 100px;
+  }
+  .viewBox{
+    position: absolute;
+    top: 37px;
+    left: 38.5px;
+    display: flex;
+    width: 180px;
+    height: 56px;
+    background-color: #FBE8E8;
+    border-radius: 8px;
+    color: #B24242;
+    border: solid 1px;
+    border-color: #B24242;
+  }
+  .decrementor{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: white;
+    width: 60px;
+    height: 56px;
+    border-radius: 8px 0px 0px 8px;
+    border: solid 1px;
+    border-color: #B24242;
+    color: #B24242;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+  }
+  .decrementor:hover{
+    color: black;
+  }
+  .counterDisplay{
+    position: absolute;
+    top: 15px;
+    left: 80px;
+    width: 25px;
+    height: 29px;
+    /* background-color: #B24242; */
+  }
+  .incrementor{
+    background-color: #B24242;
+    position: absolute;
+    top: 0px;
+    left: 120px;
+    width: 60px;
+    height: 56px;
+    border-radius: 0px 8px 8px 0px;
+    border: solid 1px;
+    border-color: #B24242;
+    color: white;
+  }
+  .minus{
+    position: absolute;
+    top: 15px;
+    right: 0px;
+    left: 20px;
+    bottom: 0px;
+    width: 7px;
+    height: 29px;
+    size: 21px;
+    color: #B24242;
+    vertical-align: top;
+  }
+  
+  .plus{
+    position: absolute;
+    top: 15px;
+    right: 0px;
+    left: 20px;
+    bottom: 0px;
+    width: 14px;
+    height: 20px;
+    color: white;
+    vertical-align: top;
+    size: 21px;
+  }
