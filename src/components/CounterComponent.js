@@ -3,49 +3,68 @@ import axios from 'axios'
 import './CounterComponent.css'
 import Loading from './Loading'
 import CounterDisplayer from './CounterDisplayer'
-var boo=false;
-// axios.get('https://interview-8e4c5-default-rtdb.firebaseio.com/front-end/counter1.json')
-//     .then(res=>{console.log(res)});
+
+const MAX = 1000 , MIN = 0;                                                 // set the maximum and minimum value
+
+//GET request
+axios.get('https://interview-8e4c5-default-rtdb.firebaseio.com/front-end/counter1.json')
+    .then(res=>{console.log(res)});
+//this request returns NULL initially
+
 const CounterComponent=()=> {
-    const [count, setCount]=useState(0);
-    useEffect(async () => {
-        // <Loading/>
-        // boo=true;
-        // console.log('here');
-        // await setTimeout(() => {
-        //     return (
-        //         <div>
-        //             <Loading/>
-        //         </div>
-        //     )
-        // }, 10000);
-        await axios.put('https://interview-8e4c5-default-rtdb.firebaseio.com/front-end.json', {deepanshu:count})
+    const [count, setCount]=useState(0);                                    // state to keep count
+    const [boo, setBoo] = useState(false);                                  // state used to render loading component
+
+    useEffect(async (e) => {                                                 // will be called whenever value of count changes.
+        
+        setBoo(true);                                                       //loader will become active
+        
+        await axios.put('https://interview-8e4c5-default-rtdb.firebaseio.com/front-end.json', {deepanshu:count})  //PUT request
         .then(res=>{
-            console.log('posted successfully');
-        });
-        console.log('here now')
-        boo=false;
-        
-        
-        }, [count])
-        if(boo){
-            console.log("hi mate i m called");
-            <Loading/>
-        }
+            console.log('posted successfully');                             //success message
+        })
+        .catch(err=>{console.log(err)});                                    //failure message
+
+        setBoo(false);                                                      //loader will be deactivated
+
+    }, [count])
+
+
+
     return (
+
         <div className="ArtBoardView">
-            
+
+            {boo?<Loading/>:''}  
+
             <div className="viewBox">
-               
-                <button className="decrementor" >
-                    <div className="minus" onClick={()=>setCount(count-1)}>-</div>
+
+                <button className="decrementor"  onClick={()=>count-1>=0?setCount(count-1):alert('Value can be in the range [0,1000]')}>
+                    <div className="minus">-</div>
                 </button>
-                <div className="counterDisplay">{count}</div>
-                <button className="incrementor">
-                    <div className="plus" onClick={()=>setCount(count+1)}>+</div>
+
+                <input className="counterDisplay" type="text" defaultValue={''} 
+                value={count}
+                onChange={
+                    (e)=>{
+                        
+                        var val = parseInt(e.target.value);
+    
+                        if(!val)setCount(0);
+                        else{
+                            if((val>=0) && (val<=1000)) setCount(val);
+                            else alert('Value can be in the range [0,1000]');  
+                        }                 
+                    }
+                }/>
+
+                <button className="incrementor" onClick={()=>count+1<=1000?setCount(count+1):alert('Value can be in the range [0,1000]')}>
+                    <div className="plus" >+</div>
                 </button>
+                
             </div>
-            <CounterDisplayer value = {{count}} />
+
+            <CounterDisplayer value = {{count}} />   
         </div>
     )
 }
