@@ -7,15 +7,15 @@ import CounterDisplayer from './CounterDisplayer'
 const MAX = 1000 , MIN = 0;                                                 // set the maximum and minimum value
 
 //GET request
-axios.get('https://interview-8e4c5-default-rtdb.firebaseio.com/front-end/counter1.json')
-    .then(res=>{console.log(res)});
 //this request returns NULL initially
 
 const CounterComponent=()=> {
-    const [count, setCount]=useState(0);                                    // state to keep count
+    const [count, setCount]=useState(1);                                    // state to keep count
     const [boo, setBoo] = useState(false);                                  // state used to render loading component
 
+
     useEffect(async (e) => {                                                 // will be called whenever value of count changes.
+        
         
         setBoo(true);                                                       //loader will become active
         
@@ -28,6 +28,16 @@ const CounterComponent=()=> {
         setBoo(false);                                                      //loader will be deactivated
 
     }, [count])
+
+    useEffect(async ()=>{
+
+        await axios.get('https://interview-8e4c5-default-rtdb.firebaseio.com/front-end/deepanshu.json')
+        .then(res=>{
+            if(!res)setCount(1);
+            else setCount(res.data);
+        });
+
+    },[])
 
 
 
@@ -61,7 +71,7 @@ const CounterComponent=()=> {
                 <button className="incrementor" onClick={()=>count+1<=1000?setCount(count+1):alert('Value can be in the range [0,1000]')}>
                     <div className="plus" >+</div>
                 </button>
-                
+
             </div>
 
             <CounterDisplayer value = {{count}} />   
